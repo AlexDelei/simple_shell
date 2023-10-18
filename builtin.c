@@ -31,7 +31,7 @@ int blt(char **arguments, int exit_stat)
 			}
 		}
 		else
-			exit_stat = 2;
+			exit_stat = 0;
 		free(arguments[0]);
 		exit(exit_stat);
 	}
