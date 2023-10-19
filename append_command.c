@@ -23,7 +23,7 @@ char *add_command(char *dir_path, char *command)
 	for (a = 0; a < len1; a++)
 		command_path[a] = dir_path[a];
 
-	if (dir_path[a - 1] != '/')
+	if (len1 > 0 && dir_path[a - 1] != '/')
 	{
 		command_path[a] = '/';
 		a++;
