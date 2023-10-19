@@ -31,7 +31,7 @@ int blt(char **arguments, int exit_stat)
 			}
 		}
 		else
-			exit_stat = 0;
+			exit_stat = 2;
 		free(arguments[0]);
 		exit(exit_stat);
 	}
@@ -39,12 +39,12 @@ int blt(char **arguments, int exit_stat)
 	{
 		if (environ == NULL)
 			return (0);
-	env_ptr = environ;
-	while (*env_ptr)
-	{
-		printf("%s\n", *env_ptr);
-		env_ptr++;
-	}
+		env_ptr = environ;
+		while (*env_ptr)
+		{
+			printf("%s\n", *env_ptr);
+			env_ptr++;
+		}
 	}
 	return (0);
 }
