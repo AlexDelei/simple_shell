@@ -27,7 +27,7 @@ int blt(char **arguments, int exit_stat)
 			else
 			{
 				fprintf(stderr, "./hsh: 1: exit: Illegal number: %s\n", arguments[1]);
-				exit_stat = 2;
+				exit_stat = 0;
 			}
 		}
 		else
