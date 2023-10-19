@@ -31,6 +31,7 @@ int _putchar(char c);
 int isthere(char *pathname);
 void dealloc(char **grid, int heigth);
 void last_dealloc(char *entry);
-int blt(char **arguments, int exit_stat);
+int blt(char **arguments, int exit_stat, char *current_dir);
+int cd(char **arguments, char *current_dir);
 
 #endif

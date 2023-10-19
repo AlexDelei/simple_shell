@@ -3,11 +3,12 @@
  * blt - Verify if the input is a builtin
  * @arguments: Pointer to the array of arguments
  * @exit_stat: Current exit status
+ * @current_dir: navigates through directories
  * Return: -1 if the command is not a builtin, 0 if it is
  */
-int blt(char **arguments, int exit_stat)
+int blt(char **arguments, int exit_stat, char *current_dir)
 {
-	char *builtins[] = {"exit", "env"}, **env_ptr;
+	char *builtins[] = {"exit", "env", "cd"}, **env_ptr;
 	int num_builtins = sizeof(builtins) / sizeof(char *);
 	int i;
 
@@ -44,6 +45,30 @@ int blt(char **arguments, int exit_stat)
 		{
 			printf("%s\n", *env_ptr);
 			env_ptr++;
+		}
+	}
+	else if (stringcmp(builtins[i], "cd") == 0)
+	{
+		if (arguments[1] == NULL)
+		{
+			if (chdir(getenv("HOME")) != 0)
+			{
+				perror("cd");
+				return (-1);
+			}
+		}
+		else
+		{
+			if (chdir(arguments[1]) != 0)
+			{
+				perror("cd");
+				return (-1);
+			}
+		}
+		if (getcwd(current_dir, PATH_MAX) == NULL)
+		{
+			perror("getcwd");
+			return (-1);
 		}
 	}
 	return (0);

@@ -9,7 +9,13 @@ int main(void)
 	size_t buffer_size = 0;
 	char *entry = NULL, *arguments[20];
 	int builtin_status, verify_status, exist_status, counter = 1, exit_status = 0;
+	char current_dir[PATH_MAX];
 
+	if (getcwd(current_dir, sizeof(current_dir)) == NULL)
+	{
+		perror("getcwd");
+		return (1);
+	}
 	while (1)
 	{
 		prompt("$ ", 2);
@@ -29,7 +35,7 @@ int main(void)
 					exit_status = exec(arguments), free(entry);
 				else
 				{
-					builtin_status = blt(arguments, exit_status);
+					builtin_status = blt(arguments, exit_status, current_dir);
 					if (builtin_status != 0)
 						exit_status = not_found(arguments, counter), free(entry);
 				}
